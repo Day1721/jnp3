@@ -2,13 +2,18 @@
 
 using namespace std;
 
+class Position
+{
+    // TODO
+};
+
 class Vector
 {
-    private:
+private:
     int firstCord;
     int secondCord;
     
-    public:
+public:
     Vector(int x, int y) {
         this->firstCord = x;
         this->secondCord = y;
@@ -18,10 +23,10 @@ class Vector
         return (this->firstCord == v.firstCord && this->secondCord == v.secondCord);
     }
     
-    Vector operator += (const Vector& v) {
+    Vector& operator += (const Vector& v) {
         this->firstCord += v.firstCord;
         this->secondCord += v.secondCord;
-        return *this; //czy na pewno * ??
+        return *this;
     }
     
     Vector reflection() {
@@ -39,12 +44,12 @@ class Vector
 
 class Rectangle
 {
-    private:
+private:
     int rWidth;
     int rHeight;
     pair<int, int> rPos;
     
-    public:
+public:
     Rectangle(int width, int height) {
         this->rWidth = width;
         this->rHeight = height;
@@ -61,13 +66,13 @@ class Rectangle
         return (this->rWidth == r.rWidth && this->rHeight == r.rHeight && this->rPos == r.rPos);
     }
     
-    Rectangle operator += (Vector& v) {
+    Rectangle& operator += (Vector& v) {
         int leftDownX = get<0>(rPos);
         int leftDownY = get<1>(rPos);
         leftDownX += v.x();
         leftDownY += v.y();
         rPos = make_pair(leftDownX, leftDownY);
-        return *this; //czy na pewno * ??
+        return *this;
     }
     
     Rectangle reflection() {
@@ -112,14 +117,47 @@ class Rectangle
     
 };
 
+class Rectangles
+{
+    // TODO
+};
+
+Position operator + (Position p, Vector v) {
+    return Position(); // TODO
+}
+
+Position operator + (Vector v, Position p) {
+    return Position(); // TODO
+}
+
+Vector operator + (Vector v1, Vector v2) {
+    return v1 += v2;
+}
+
+Rectangle operator + (Rectangle r, Vector& v) {
+    return r += v;
+}
+
+Rectangle operator + (Vector& v, Rectangle r) {
+    return r += v;
+}
+
+Rectangles operator + (Rectangles r, Vector v) {
+    return Rectangles(); // TODO
+}
+
+Rectangles operator + (Vector v, Rectangles r) {
+    return Rectangles(); // TODO
+}
+
+void merge_horizontally(Rectangle rect1, Rectangle rect2) {
+    // TODO
+}
+
+void merge_vertically(Rectangle rect1, Rectangle rect2) {
+    // TODO
+}
+
 int main(int argc, const char * argv[]) {
-    Rectangle rect1 = Rectangle(100, 200);
-    pair<Rectangle, Rectangle> para = rect1.split_vertically(20);
-    
-    Rectangle rect2 = get<0>(para);
-    Rectangle rect3 = get<1>(para);
-    
-    cout << get<0>(rect2.pos()) << "," << get<1>(rect2.pos()) << " h: " << rect2.height() << " w: "<< rect2.width() << endl;
-    cout << get<0>(rect3.pos()) << "," << get<1>(rect3.pos()) << " h: " << rect3.height() << " w: "<< rect3.width() << endl;
     return 0;
 }
