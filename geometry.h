@@ -113,10 +113,8 @@ Rectangles operator +(Rectangles r, Vector& v);
 
 Rectangles operator +(Vector& v, Rectangles r);
 
-void merge_horizontally(Rectangle rect1, Rectangle rect2);
+Rectangle merge_horizontally(Rectangle& rect1, Rectangle& rect2);
 
-void merge_vertically(Rectangle rect1, Rectangle rect2);
-
-// TODO
+Rectangle merge_vertically(Rectangle& rect1, Rectangle& rect2);
 
 #endif // GEOMETRY_H
